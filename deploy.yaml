@@ -40,8 +40,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: nginx.local
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
