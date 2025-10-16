@@ -29,5 +29,5 @@ spec:
     - protocol: TCP
       port: 80         # Service port
       targetPort: 80   # Container port
-      nodePort: 30080  # Port on the node to access externally
-  type: NodePort
+      # nodePort: 30080  # Port on the node to access externally
+  type: LoadBalancer
