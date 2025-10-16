@@ -21,13 +21,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-svc
+  name: nginx-lb
 spec:
   selector:
-    app: nginx-app
+    app: nginx
   ports:
     - protocol: TCP
-      port: 80         # Service port
-      targetPort: 80   # Container port
-      # nodePort: 30080  # Port on the node to access externally
+      port: 80
+      targetPort: 80
   type: LoadBalancer
