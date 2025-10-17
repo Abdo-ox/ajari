@@ -40,7 +40,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - http:
+    - host: argocd
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -59,7 +60,8 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-  - http:
+  - host: nginx
+    http:
       paths:
       - path: /
         pathType: Prefix
