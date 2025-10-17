@@ -23,14 +23,14 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: ClusterIP
+  type: nodePort
   selector:
     app: nginx
   ports:
     - protocol: TCP
       port: 80        # Service port inside cluster
       targetPort: 80  # Container port
-      # nodePort: 30080 # Port exposed on host
+      nodePort: 30080 # Port exposed on host
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
