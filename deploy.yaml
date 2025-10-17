@@ -57,8 +57,9 @@ metadata:
   name: argocd-ingress
   namespace: argocd
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-    traefik.ingress.kubernetes.io/router.middlewares: argocd-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
 spec:
   rules:
   - host: argocd.local
@@ -70,4 +71,4 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 443
+              name: https
