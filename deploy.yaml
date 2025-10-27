@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: ajari1/app:v1
+        image: ajari1/app:v2
         ports:
         - containerPort: 80
 ---
