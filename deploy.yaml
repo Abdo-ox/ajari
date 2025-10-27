@@ -16,7 +16,7 @@ spec:
       containers:
       - name: nginx
         image: ajari1/app:v2
-        imagePullPolicy: Always
+        # imagePullPolicy: Always
         ports:
         - containerPort: 80
 ---
