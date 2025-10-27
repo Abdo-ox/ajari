@@ -54,7 +54,7 @@ spec:
                 name: argocd-server
                 port:
                   number: 443
-  tls:
-    - hosts:
-        - argocd.local
-      secretName: argocd-secret  # ArgoCD’s default TLS secret
+  # tls:
+  #   - hosts:
+  #       - argocd.local
+  #     secretName: argocd-secret  # ArgoCD’s default TLS secret
