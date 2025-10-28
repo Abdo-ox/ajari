@@ -38,17 +38,17 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 443
-          volumeMounts:
-            - name: tls-cert
-              mountPath: "/etc/nginx/ssl"
-              readOnly: true
+          # volumeMounts:
+          #   - name: tls-cert
+          #     mountPath: "/etc/nginx/ssl"
+          #     readOnly: true
             # - name: nginx-conf
             #   mountPath: "/etc/nginx/conf.d"
             #   readOnly: true
-      volumes:
-        - name: tls-cert
-          secret:
-            secretName: nginx-tls-secret
+      # volumes:
+      #   - name: tls-cert
+      #     secret:
+      #       secretName: nginx-tls-secret
         # - name: nginx-conf
         #   configMap:
         #     name: nginx-tls-config
