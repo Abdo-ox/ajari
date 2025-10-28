@@ -1,22 +1,22 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: nginx-tls-config
-  namespace: dev
-data:
-  default.conf: |
-    server {
-        listen 443 ssl;
-        server_name nginx.local;
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: nginx-tls-config
+#   namespace: dev
+# data:
+#   default.conf: |
+#     server {
+#         listen 443 ssl;
+#         server_name nginx.local;
 
-        ssl_certificate     /etc/nginx/ssl/selfsigned.crt;
-        ssl_certificate_key /etc/nginx/ssl/selfsigned.key;
+#         ssl_certificate     /etc/nginx/ssl/selfsigned.crt;
+#         ssl_certificate_key /etc/nginx/ssl/selfsigned.key;
 
-        location / {
-            root /usr/share/nginx/html;
-            index index.html;
-        }
-    }
+#         location / {
+#             root /usr/share/nginx/html;
+#             index index.html;
+#         }
+#     }
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -49,9 +49,9 @@ spec:
         - name: tls-cert
           secret:
             secretName: nginx-tls-secret
-        - name: nginx-conf
-          configMap:
-            name: nginx-tls-config
+        # - name: nginx-conf
+        #   configMap:
+        #     name: nginx-tls-config
 
 ---
 apiVersion: v1
