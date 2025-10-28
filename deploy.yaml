@@ -38,6 +38,7 @@ spec:
           image: nginx:latest
           ports:
             - containerPort: 443
+            - containerPort: 80
           volumeMounts:
             - name: tls-cert
               mountPath: "/etc/nginx/ssl"
