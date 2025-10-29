@@ -84,7 +84,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-Ingress
+  name: nginx-ingress
   namespace: dev
 spec:
   rules:
