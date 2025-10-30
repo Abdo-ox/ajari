@@ -1,63 +1,63 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: nginx-tls-config
-#   namespace: dev
-# data:
-#   default.conf: |
-#     server {
-#         listen 443 ssl;
-#         server_name nginx.local;
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-tls-config
+  namespace: dev
+data:
+  default.conf: |
+    server {
+        listen 443 ssl;
+        server_name nginx.local;
 
-#         ssl_certificate     /etc/nginx/ssl/tls.crt;
-#         ssl_certificate_key /etc/nginx/ssl/tls.key;
+        ssl_certificate     /etc/nginx/ssl/tls.crt;
+        ssl_certificate_key /etc/nginx/ssl/tls.key;
 
-#         location / {
-#             root /usr/share/nginx/html;
-#             index index.html;
-#         }
-#     }
-#     server {
-#     listen 80;
-#     server_name localhost;
-#     return 301 https://$host:8002$request_uri;
-#     }
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: nginx-deployment
-#   namespace: dev
-# spec:
-#   replicas: 3
-#   selector:
-#     matchLabels:
-#       app: nginx
-#   template:
-#     metadata:
-#       labels:
-#         app: nginx
-#     spec:
-#       containers:
-#         - name: nginx
-#           image: nginx:latest
-#           ports:
-#             - containerPort: 443
-#             - containerPort: 80
-#           volumeMounts:
-#             - name: tls-cert
-#               mountPath: "/etc/nginx/ssl"
-#               readOnly: true
-#             - name: nginx-conf
-#               mountPath: "/etc/nginx/conf.d"
-#               readOnly: true
-#       volumes:
-#         - name: tls-cert
-#           secret:
-#             secretName: nginx-tls-secret
-#         - name: nginx-conf
-#           configMap:
-#             name: nginx-tls-config
+        location / {
+            root /usr/share/nginx/html;
+            index index.html;
+        }
+    }
+    server {
+    listen 80;
+    server_name localhost;
+    return 301 https://$host:8002$request_uri;
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 443
+            - containerPort: 80
+          volumeMounts:
+            - name: tls-cert
+              mountPath: "/etc/nginx/ssl"
+              readOnly: true
+            - name: nginx-conf
+              mountPath: "/etc/nginx/conf.d"
+              readOnly: true
+      volumes:
+        - name: tls-cert
+          secret:
+            secretName: nginx-tls-secret
+        - name: nginx-conf
+          configMap:
+            name: nginx-tls-config
 
 # ---
 # apiVersion: v1
@@ -81,25 +81,25 @@
 #       targetPort: 443
 #       nodePort: 30082
 # ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-ingress
-  namespace: argocd
-  # annotations:
-  #   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-  #   nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-  #   nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: localhost
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 443
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd-ingress
+#   namespace: argocd
+#   # annotations:
+#   #   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+#   #   nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+#   #   nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: localhost
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: argocd-server
+#                 port:
+#                   number: 443
