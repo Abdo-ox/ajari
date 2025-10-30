@@ -42,22 +42,22 @@ spec:
         - name: nginx
           image: nginx:latest
           ports:
-            # - containerPort: 443
+            - containerPort: 443
             - containerPort: 80
-          # volumeMounts:
-          #   - name: tls-cert
-          #     mountPath: "/etc/nginx/ssl"
-          #     readOnly: true
-          #   - name: nginx-conf
-          #     mountPath: "/etc/nginx/conf.d"
-          #     readOnly: true
-      # volumes:
-      #   - name: tls-cert
-      #     secret:
-      #       secretName: nginx-tls-secret
-      #   - name: nginx-conf
-      #     configMap:
-      #       name: nginx-tls-config
+          volumeMounts:
+            - name: tls-cert
+              mountPath: "/etc/nginx/ssl"
+              readOnly: true
+            - name: nginx-conf
+              mountPath: "/etc/nginx/conf.d"
+              readOnly: true
+      volumes:
+        - name: tls-cert
+          secret:
+            secretName: nginx-tls-secret
+        - name: nginx-conf
+          configMap:
+            name: nginx-tls-config
 
 ---
 apiVersion: v1
@@ -75,28 +75,32 @@ spec:
       targetPort: 80
       nodePort: 30083
       name: http
-    # - protocol: TCP
-    #   name: https
-    #   port: 443
-    #   targetPort: 443
-    #   nodePort: 30082
+    - protocol: TCP
+      name: https
+      port: 443
+      targetPort: 443
+      nodePort: 30082
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ing
-  namespace: dev
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
+  tls:
+    - secretName: nginx-tls-secret
   rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx-svc
-            port:
-              number: 80
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 443
+
   # - http:
   #     paths:
   #     - path: /
