@@ -100,4 +100,4 @@ spec:
               service:
                 name: nginx-svc
                 port:
-                  number: 80
+                  number: 443
