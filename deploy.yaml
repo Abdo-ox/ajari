@@ -88,9 +88,9 @@ metadata:
   namespace: dev
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-tls:
-  - secretName: nginx-tls-secret
 spec:
+  tls:
+    - secretName: nginx-tls-secret
   rules:
     - http:
         paths:
