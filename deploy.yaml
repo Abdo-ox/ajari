@@ -101,36 +101,3 @@ spec:
                 name: nginx-svc
                 port:
                   number: 443
-
-  # - http:
-  #     paths:
-  #     - path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: nginx-svc
-  #           port:
-  #             number: 80
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: argocd-ingress
-#   namespace: argocd
-#   # annotations:
-#   #   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-#   #   nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-#   #   nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - host: localhost
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: argocd-server
-#                 port:
-#                   number: 443
