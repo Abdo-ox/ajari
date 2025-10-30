@@ -101,7 +101,7 @@ spec:
               service:
                 name: nginx-svc
                 port:
-                  number: 443- 
+                  number: 443
       # http:
       #   paths:
       #     - path: /
