@@ -94,12 +94,23 @@ spec:
   tls:
     - secretName: nginx-tls-secret
   rules:
-    - http:
+    - host: nginx.local
+      http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
                 name: nginx-svc
+                port:
+                  number: 443
+    - host: argocd.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
                 port:
                   number: 443
