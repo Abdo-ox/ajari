@@ -90,7 +90,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  # ingressClassName: nginx 
+  ingressClassName: nginx 
   tls:
     - secretName: nginx-tls-secret
   rules:
