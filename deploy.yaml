@@ -48,7 +48,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: nginx-svc
+                name: wil-svc
                 port:
                   number: 80
 ---
