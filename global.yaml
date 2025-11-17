@@ -1,0 +1,19 @@
+global:
+  edition: ce
+  hosts:
+    domain: example.com
+    externalIP: 10.10.10.10
+  ingress:
+    configureCertmanager: false
+
+certmanager-issuer:
+  email: "admin@example.com"
+
+gitlab-kas:
+  enabled: false
+
+global:
+  kas:
+    enabled: false
+
+    
