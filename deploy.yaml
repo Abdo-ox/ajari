@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: wil
-          image: wil42/playground:v2
+          image: ajari1/app:v2
           ports:
-            - containerPort: 8888
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -102,3 +102,6 @@ spec:
                 name: gitlab-webservice-default
                 port:
                   number: 8083
+
+#U8Kr7An8G6N0rRQT
+#E4POcHG3Qa2RrM3VDtV75Wx0hESjTdi4hw2tJquaYDBwIjJM9odU76inwHWiC0Ow
