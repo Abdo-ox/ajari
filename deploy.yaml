@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: wil
-          image: ajari1/app:v2
+          image: wil/playground:v2
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
