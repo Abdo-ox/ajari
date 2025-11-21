@@ -32,25 +32,25 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8888
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: wil-ing
-  namespace: dev
-spec:
-  ingressClassName: nginx
-  rules:
-    - host: wil.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: wil-svc
-                port:
-                  number: 80
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: wil-ing
+#   namespace: dev
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - host: wil.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: wil-svc
+#                 port:
+#                   number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -62,7 +62,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: argocd.local
+    - host: argocd.127.0.0.1.nip.io
       http:
         paths:
           - path: /
