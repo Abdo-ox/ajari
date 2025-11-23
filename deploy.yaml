@@ -39,7 +39,7 @@ metadata:
   name: wil-ing
   namespace: dev
 spec:
-  ingressClassName: nginx
+  # ingressClassName: nginx
   rules:
     - host: wil.local
       http:
