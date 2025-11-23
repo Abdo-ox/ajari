@@ -62,9 +62,9 @@ metadata:
   #   traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   ingressClassName: traefik
-  tls:
-  - hosts:
-    - argocd.127.0.0.1.nip.io
+  # tls:
+  # - hosts:
+  #   - argocd.127.0.0.1.nip.io
   rules:
   - host: argocd.127.0.0.1.nip.io
     http:
