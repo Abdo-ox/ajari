@@ -60,7 +60,7 @@ metadata:
   # annotations:
   #   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  ingressClassName: nginx
+  # ingressClassName: nginx
   rules:
     # - host: argocd.127.0.0.1.nip.io
     -  http:
@@ -105,3 +105,13 @@ spec:
 
 #U8Kr7An8G6N0rRQT
 #E4POcHG3Qa2RrM3VDtV75Wx0hESjTdi4hw2tJquaYDBwIjJM9odU76inwHWiC0Ow
+# helm upgrade --install gitlab gitlab/gitlab \
+#     --namespace gitlab \
+#     --values https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
+#     --set global.hosts.domain=localhost \
+#     --set global.hosts.externalIP=0.0.0.0 \
+#     --set global.hosts.https=false \
+#     --set certmanager.install=false \
+#     --set global.ingress.configureCertmanager=false \
+#     --timeout 600s \
+#     --wait
