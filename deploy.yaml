@@ -32,87 +32,22 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8888
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: wil-ing
-#   namespace: dev
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - host: wil.local
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: wil-svc
-#                 port:
-#                   number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-ingress
-  namespace: argocd
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+  name: wil-ing
+  namespace: dev
 spec:
   ingressClassName: nginx
   rules:
-    - host: argocd.127.0.0.1.nip.io
+    - host: wil.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: argocd-server
+                name: wil-svc
                 port:
-                  number: 443
-
-    # - http:
-    #     paths:
-    #       - path: /
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: argocd-server
-    #             port:
-    #               number: 443
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: gitlab-ing
-#   # namespace: argocd
-#   # annotations:
-#   #   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - host: gitlab.local
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: gitlab-webservice-default
-#                 port:
-#                   number: 8083
-
-#U8Kr7An8G6N0rRQT
-#E4POcHG3Qa2RrM3VDtV75Wx0hESjTdi4hw2tJquaYDBwIjJM9odU76inwHWiC0Ow
-# helm upgrade --install gitlab gitlab/gitlab \
-#     --namespace gitlab \
-#     --values https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
-#     --set global.hosts.domain=localhost \
-#     --set global.hosts.externalIP=0.0.0.0 \
-#     --set global.hosts.https=false \
-#     --set certmanager.install=false \
-#     --set global.ingress.configureCertmanager=false \
-#     --timeout 600s \
-#     --wait
+                  number: 80
