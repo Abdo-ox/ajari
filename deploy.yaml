@@ -60,21 +60,20 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.tls.passthrough: "true"
 spec:
   ingressClassName: traefik
   tls:
-    - hosts:
-        - argocd.127.0.0.1.nip.io
-      secretName: argocd-tls   # Create this TLS secret (self-signed or real cert)
+  - hosts:
+    - argocd.127.0.0.1.nip.io
   rules:
-    - host: argocd.127.0.0.1.nip.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 443
+  - host: argocd.127.0.0.1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              number: 80
+
