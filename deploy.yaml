@@ -62,7 +62,7 @@ metadata:
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     # nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
-  ingressClassName: nginx
+  # ingressClassName: nginx
   rules:
     - host: argocd.127.0.0.1.nip.io
       http:
