@@ -59,7 +59,7 @@ metadata:
   namespace: argocd
   annotations:
     # For k3d's traefik ingress controller
-    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   rules:
