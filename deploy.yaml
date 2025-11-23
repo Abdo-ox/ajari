@@ -58,8 +58,8 @@ metadata:
   name: argocd-ingress
   namespace: argocd
   annotations:
-    # traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    # traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/router.tls.passthrough: "true"
 spec:
   ingressClassName: traefik
