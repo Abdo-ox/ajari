@@ -58,9 +58,9 @@ metadata:
   name: argocd-ingress
   namespace: argocd
   annotations:
-    # For k3d's traefik ingress controller
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/service.serversscheme: http
 spec:
   rules:
   - host: argocd.localhost
@@ -72,7 +72,7 @@ spec:
           service:
             name: argocd-server
             port:
-              number: 443
+              number: https
   tls:
   - hosts:
     - argocd.localhost
