@@ -57,10 +57,10 @@ kind: Ingress
 metadata:
   name: nginx-argocd
   namespace: argocd
-  # annotations:
-  #   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  # ingressClassName: nginx
+  ingressClassName: nginx
   rules:
     # - host: argocd.127.0.0.1.nip.io
     -  http:
