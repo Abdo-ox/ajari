@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wil-deployment
+  name: wil-playground
   namespace: dev
 spec:
   replicas: 2
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wil-svc
+  name: wil-playground
   namespace: dev
 spec:
   type: NodePort
@@ -32,41 +32,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8888
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: wil-ing
-  namespace: dev
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: wil-svc
-                port:
-                  number: 80
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: argocd-ingress
-  namespace: argocd
-spec:
-  rules:
-  - host: argocd.localhost
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              number: 80
+      nodePort: 30001
 
 
 
